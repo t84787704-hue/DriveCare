@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vehicle Details"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tvVehicleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vehicle Name"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:paddingTop="20dp" />
+
+
+        <TextView
+            android:id="@+id/tvVehicleType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vehicle Type"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tvVehicleBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brand"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tvVehicleModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Model"
+            android:textSize="18sp" />
+
+
+        <Button
+            android:id="@+id/btnEditVehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Vehicle" />
+
+
+        <Button
+            android:id="@+id/btnDeleteVehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Vehicle" />
+
+
+        <Button
+            android:id="@+id/btnServiceHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Service History" />
+
+
+        <Button
+            android:id="@+id/btnFuelHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fuel History" />
+
+
+        <Button
+            android:id="@+id/btnDocuments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vehicle Documents" />
+
+
+        <Button
+            android:id="@+id/btnInsurance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Insurance Details" />
+
+    </LinearLayout>
+
+</ScrollView>
