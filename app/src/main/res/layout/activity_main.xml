@@ -1,21 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to DriveCare"
-        android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:orientation="vertical"
+        android:padding="20dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DriveCare"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Worldwide Vehicle Assistant"
+            android:textSize="16sp"
+            android:paddingBottom="25dp" />
+
+
+        <Button
+            android:id="@+id/btnMyVehicles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Vehicles" />
+
+
+        <Button
+            android:id="@+id/btnServiceReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Service Reminders" />
+
+
+        <Button
+            android:id="@+id/btnFuelTracker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fuel Tracker" />
+
+
+        <Button
+            android:id="@+id/btnMaintenance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Maintenance History" />
+
+
+        <Button
+            android:id="@+id/btnDocuments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vehicle Documents" />
+
+
+        <Button
+            android:id="@+id/btnEmergency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emergency Contacts" />
+
+
+        <Button
+            android:id="@+id/btnNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notifications" />
+
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Settings" />
+
+    </LinearLayout>
+
+</ScrollView>
