@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add New Vehicle"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etVehicleName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vehicle Name" />
+
+        <EditText
+            android:id="@+id/etVehicleType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vehicle Type (Car, Bike, Truck etc.)" />
+
+        <EditText
+            android:id="@+id/etBrand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand" />
+
+        <EditText
+            android:id="@+id/etModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model" />
+
+        <EditText
+            android:id="@+id/etYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Manufacturing Year"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/etRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Registration Number" />
+
+        <EditText
+            android:id="@+id/etFuelType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fuel Type" />
+
+        <Button
+            android:id="@+id/btnSaveVehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Vehicle" />
+
+    </LinearLayout>
+
+</ScrollView>
