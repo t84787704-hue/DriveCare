@@ -22,10 +22,15 @@ class AddFuelActivity : AppCompatActivity() {
 
     private lateinit var btnSaveFuel: Button
 
+    private var vehicleName: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_add_fuel)
+
+        vehicleName =
+            intent.getStringExtra("vehicleName") ?: ""
 
         etVehicleName =
             findViewById(R.id.etVehicleName)
@@ -55,6 +60,11 @@ class AddFuelActivity : AppCompatActivity() {
             findViewById(R.id.btnSaveFuel)
 
 
+        // Automatically Set Vehicle Name
+
+        etVehicleName.setText(vehicleName)
+
+
         btnSaveFuel.setOnClickListener {
 
             saveFuelEntry()
@@ -67,7 +77,7 @@ class AddFuelActivity : AppCompatActivity() {
         val fuelEntry = FuelEntry(
 
             vehicleName =
-                etVehicleName.text.toString(),
+                vehicleName,
 
             fuelDate =
                 etFuelDate.text.toString(),
