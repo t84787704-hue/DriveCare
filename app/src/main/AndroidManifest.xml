@@ -41,6 +41,10 @@
         <activity
             android:name=".EmergencyActivity" />
 
+        <!-- Notifications -->
+        <activity
+            android:name=".NotificationsActivity" />
+
         <!-- Main Screen -->
         <activity
             android:name=".MainActivity"
