@@ -6,13 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Vehicle::class],
-    version = 1,
+    entities = [
+        Vehicle::class,
+        Reminder::class
+    ],
+    version = 2,
     exportSchema = false
 )
 abstract class VehicleDatabase : RoomDatabase() {
 
     abstract fun vehicleDao(): VehicleDao
+
+    abstract fun reminderDao(): ReminderDao
 
     companion object {
 
@@ -27,7 +32,9 @@ abstract class VehicleDatabase : RoomDatabase() {
                     context.applicationContext,
                     VehicleDatabase::class.java,
                     "drivecare_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
 
                 INSTANCE = instance
                 instance
