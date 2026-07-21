@@ -29,22 +29,17 @@ class MainActivity : AppCompatActivity() {
 
         // Maintenance History
         findViewById<Button>(R.id.btnMaintenance).setOnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    MaintenanceHistoryActivity::class.java
-                )
-            )
+            startActivity(Intent(this, MaintenanceHistoryActivity::class.java))
         }
 
         // Vehicle Documents
         findViewById<Button>(R.id.btnDocuments).setOnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    DocumentsActivity::class.java
-                )
-            )
+            startActivity(Intent(this, DocumentsActivity::class.java))
+        }
+
+        // Emergency Contacts
+        findViewById<Button>(R.id.btnEmergency).setOnClickListener {
+            startActivity(Intent(this, EmergencyActivity::class.java))
         }
 
     }
