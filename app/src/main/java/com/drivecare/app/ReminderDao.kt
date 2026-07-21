@@ -26,4 +26,25 @@ interface ReminderDao {
 
     @Query("DELETE FROM reminders")
     suspend fun deleteAllReminders()
+
+
+    // Upcoming Reminders
+    @Query("SELECT * FROM reminders WHERE status = 'Upcoming'")
+    suspend fun getUpcomingReminders(): List<Reminder>
+
+
+    // Due Today
+    @Query("SELECT * FROM reminders WHERE status = 'Due Today'")
+    suspend fun getTodayReminders(): List<Reminder>
+
+
+    // Overdue Reminders
+    @Query("SELECT * FROM reminders WHERE status = 'Overdue'")
+    suspend fun getOverdueReminders(): List<Reminder>
+
+
+    // Completed Reminders
+    @Query("SELECT * FROM reminders WHERE status = 'Completed'")
+    suspend fun getCompletedReminders(): List<Reminder>
+
 }
