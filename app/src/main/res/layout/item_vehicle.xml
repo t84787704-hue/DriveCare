@@ -1,54 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
+package com.drivecare.app
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_margin="8dp"
-        android:background="#EAEAEA">
+class MainActivity : AppCompatActivity() {
 
-        <TextView
-            android:id="@+id/tvVehicleName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vehicle Name"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        <TextView
-            android:id="@+id/tvVehicleBrand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Brand Name"
-            android:textSize="18sp" />
+        // My Vehicles
+        findViewById<Button>(R.id.btnMyVehicles).setOnClickListener {
+            startActivity(Intent(this, VehicleListActivity::class.java))
+        }
 
-        <TextView
-            android:id="@+id/tvVehicleModel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Model Name"
-            android:textSize="18sp" />
+        // Service Reminders
+        findViewById<Button>(R.id.btnServiceReminder).setOnClickListener {
+            startActivity(Intent(this, ReminderListActivity::class.java))
+        }
 
-        <TextView
-            android:id="@+id/tvRegistrationNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Registration Number"
-            android:textSize="18sp" />
+        // Fuel Tracker
+        findViewById<Button>(R.id.btnFuelTracker).setOnClickListener {
+            startActivity(Intent(this, FuelListActivity::class.java))
+        }
 
-        <TextView
-            android:id="@+id/tvVehicleDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp"
-            android:text="Vehicle Details" />
+        // Maintenance History
+        findViewById<Button>(R.id.btnMaintenance).setOnClickListener {
+            startActivity(Intent(this, MaintenanceHistoryActivity::class.java))
+        }
 
-    </LinearLayout>
+        // Vehicle Documents
+        findViewById<Button>(R.id.btnDocuments).setOnClickListener {
+            startActivity(Intent(this, VehicleDocumentsActivity::class.java))
+        }
 
-</ScrollView>
+        // Emergency Contacts
+        findViewById<Button>(R.id.btnEmergency).setOnClickListener {
+            startActivity(Intent(this, EmergencyContactsActivity::class.java))
+        }
+
+        // Notifications
+        findViewById<Button>(R.id.btnNotifications).setOnClickListener {
+            startActivity(Intent(this, NotificationsActivity::class.java))
+        }
+
+        // Settings
+        findViewById<Button>(R.id.btnSettings).setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
+    }
+}
