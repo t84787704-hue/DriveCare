@@ -33,6 +33,10 @@
         <activity
             android:name=".MaintenanceHistoryActivity" />
 
+        <!-- Add Maintenance -->
+        <activity
+            android:name=".AddMaintenanceActivity" />
+
         <!-- Vehicle Documents -->
         <activity
             android:name=".DocumentsActivity" />
