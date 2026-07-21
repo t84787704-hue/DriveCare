@@ -21,4 +21,11 @@
         android:text="No Maintenance Records Added Yet."
         android:textSize="18sp" />
 
+    <Button
+        android:id="@+id/btnDeleteMaintenance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Delete Maintenance Record" />
+
 </LinearLayout>
