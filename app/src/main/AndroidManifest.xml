@@ -37,6 +37,10 @@
         <activity
             android:name=".DocumentsActivity" />
 
+        <!-- Emergency Contacts -->
+        <activity
+            android:name=".EmergencyActivity" />
+
         <!-- Main Screen -->
         <activity
             android:name=".MainActivity"
