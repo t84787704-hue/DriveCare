@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Fuel Entry"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etVehicleName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vehicle Name" />
+
+        <EditText
+            android:id="@+id/etFuelDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fuel Date (DD-MM-YYYY)" />
+
+        <EditText
+            android:id="@+id/etFuelType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fuel Type (Petrol / Diesel / Hybrid / Electric / CNG / Other)" />
+
+        <EditText
+            android:id="@+id/etFuelQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fuel Quantity (Liters)" />
+
+        <EditText
+            android:id="@+id/etAmountPaid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount Paid" />
+
+        <EditText
+            android:id="@+id/etCurrentOdometer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Current Odometer (KM)" />
+
+        <EditText
+            android:id="@+id/etFuelStationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fuel Station Name (Optional)" />
+
+        <EditText
+            android:id="@+id/etNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Notes (Optional)" />
+
+        <Button
+            android:id="@+id/btnSaveFuel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Fuel Entry" />
+
+    </LinearLayout>
+
+</ScrollView>
