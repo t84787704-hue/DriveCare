@@ -18,10 +18,22 @@ class FuelListActivity : AppCompatActivity() {
     private lateinit var tvTotalFuelEntries: TextView
     private lateinit var rvFuelEntries: RecyclerView
 
+    private var vehicleName: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_fuel_list)
+
+        vehicleName =
+            intent.getStringExtra("vehicleName") ?: ""
+
+        title =
+            if (vehicleName.isNotEmpty()) {
+                "$vehicleName - Fuel History"
+            } else {
+                "Fuel History"
+            }
 
         btnAddFuel =
             findViewById(R.id.btnAddFuel)
@@ -35,14 +47,20 @@ class FuelListActivity : AppCompatActivity() {
         rvFuelEntries.layoutManager =
             LinearLayoutManager(this)
 
+
         btnAddFuel.setOnClickListener {
 
-            startActivity(
-                Intent(
-                    this,
-                    AddFuelActivity::class.java
-                )
+            val intent = Intent(
+                this,
+                AddFuelActivity::class.java
             )
+
+            intent.putExtra(
+                "vehicleName",
+                vehicleName
+            )
+
+            startActivity(intent)
         }
 
         loadFuelEntries()
@@ -60,10 +78,24 @@ class FuelListActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
 
             val fuelList =
-                VehicleDatabase
-                    .getDatabase(applicationContext)
-                    .fuelDao()
-                    .getAllFuelEntries()
+
+                if (vehicleName.isNotEmpty()) {
+
+                    VehicleDatabase
+                        .getDatabase(applicationContext)
+                        .fuelDao()
+                        .getFuelEntriesByVehicle(
+                            vehicleName
+                        )
+
+                } else {
+
+                    VehicleDatabase
+                        .getDatabase(applicationContext)
+                        .fuelDao()
+                        .getAllFuelEntries()
+
+                }
 
 
             withContext(Dispatchers.Main) {
