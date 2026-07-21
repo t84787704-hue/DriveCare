@@ -15,6 +15,8 @@ data class Vehicle(
     val model: String,
     val manufacturingYear: String,
     val registrationNumber: String,
+    val engineNumber: String,
+    val chassisNumber: String,
     val fuelType: String,
     val odometerReading: String,
     val purchaseDate: String,
@@ -22,6 +24,8 @@ data class Vehicle(
     val vehiclePhoto: String,
     val country: String,
     val distanceUnit: String,
-    val notes: String
+    val notes: String,
+    val createdAt: Long = System.currentTimeMillis(),
+    val updatedAt: Long = System.currentTimeMillis()
 
 )
