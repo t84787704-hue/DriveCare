@@ -33,6 +33,10 @@
         <activity
             android:name=".MaintenanceHistoryActivity" />
 
+        <!-- Vehicle Documents -->
+        <activity
+            android:name=".DocumentsActivity" />
+
         <!-- Main Screen -->
         <activity
             android:name=".MainActivity"
