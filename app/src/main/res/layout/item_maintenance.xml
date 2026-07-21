@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvServiceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service Title"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/tvServiceType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service Type"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/tvServiceDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service Date"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/tvMaintenanceDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Maintenance Details"
+        android:textSize="16sp"
+        android:paddingTop="8dp" />
+
+</LinearLayout>
