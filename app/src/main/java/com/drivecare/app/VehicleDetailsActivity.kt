@@ -1,5 +1,6 @@
 package com.drivecare.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -22,7 +23,10 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_vehicle_details)
+
+        title = "Vehicle Details"
 
         tvVehicleName = findViewById(R.id.tvVehicleName)
         tvVehicleType = findViewById(R.id.tvVehicleType)
@@ -38,13 +42,15 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
 
         // Temporary Data
-        // بعد میں یہ Data Room Database سے آئے گا۔
+        // Future mein ye Room Database se load hoga.
 
         tvVehicleName.text = "Vehicle Name"
         tvVehicleType.text = "Vehicle Type"
         tvVehicleBrand.text = "Vehicle Brand"
         tvVehicleModel.text = "Vehicle Model"
 
+
+        // Edit Vehicle
 
         btnEditVehicle.setOnClickListener {
 
@@ -56,6 +62,9 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
         }
 
+
+        // Delete Vehicle
+
         btnDeleteVehicle.setOnClickListener {
 
             Toast.makeText(
@@ -66,41 +75,56 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
         }
 
+
+        // Maintenance History
+
         btnServiceHistory.setOnClickListener {
 
-            Toast.makeText(
-                this,
-                "Service History Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
+            startActivity(
+                Intent(
+                    this,
+                    MaintenanceHistoryActivity::class.java
+                )
+            )
 
         }
+
+
+        // Fuel History
 
         btnFuelHistory.setOnClickListener {
 
-            Toast.makeText(
-                this,
-                "Fuel History Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
+            startActivity(
+                Intent(
+                    this,
+                    FuelListActivity::class.java
+                )
+            )
 
         }
+
+
+        // Vehicle Documents
 
         btnDocuments.setOnClickListener {
 
-            Toast.makeText(
-                this,
-                "Vehicle Documents Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
+            startActivity(
+                Intent(
+                    this,
+                    DocumentsActivity::class.java
+                )
+            )
 
         }
+
+
+        // Insurance Details
 
         btnInsurance.setOnClickListener {
 
             Toast.makeText(
                 this,
-                "Insurance Details Coming Soon.",
+                "Insurance Module Coming Soon.",
                 Toast.LENGTH_SHORT
             ).show()
 
