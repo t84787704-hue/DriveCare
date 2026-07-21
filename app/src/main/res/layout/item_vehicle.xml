@@ -16,78 +16,38 @@
             android:id="@+id/tvVehicleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Vehicle Name"
             android:textSize="22sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/tvVehicleType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvVehicleBrand"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="Brand Name"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvVehicleModel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tvManufacturingYear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="Model Name"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvRegistrationNumber"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="Registration Number"
+            android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tvEngineNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tvChassisNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tvFuelType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tvOdometer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tvPurchaseDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tvCountry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tvDistanceUnit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tvInsurance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tvNotes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:id="@+id/tvVehicleDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:text="Vehicle Details" />
 
     </LinearLayout>
 
