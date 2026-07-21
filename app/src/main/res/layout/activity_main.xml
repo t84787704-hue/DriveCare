@@ -1,85 +1,166 @@
-<?xml version="1.0" encoding="utf-8"?>
+package com.drivecare.app
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+class MainActivity : AppCompatActivity() {
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DriveCare"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+    private lateinit var btnMyVehicles: Button
+    private lateinit var btnServiceReminder: Button
+    private lateinit var btnFuelTracker: Button
+    private lateinit var btnMaintenance: Button
+    private lateinit var btnDocuments: Button
+    private lateinit var btnEmergency: Button
+    private lateinit var btnNotifications: Button
+    private lateinit var btnSettings: Button
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your Worldwide Vehicle Assistant"
-            android:textSize="16sp"
-            android:paddingBottom="25dp" />
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setContentView(R.layout.activity_main)
 
 
-        <Button
-            android:id="@+id/btnMyVehicles"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="My Vehicles" />
+        btnMyVehicles =
+            findViewById(R.id.btnMyVehicles)
+
+        btnServiceReminder =
+            findViewById(R.id.btnServiceReminder)
+
+        btnFuelTracker =
+            findViewById(R.id.btnFuelTracker)
+
+        btnMaintenance =
+            findViewById(R.id.btnMaintenance)
+
+        btnDocuments =
+            findViewById(R.id.btnDocuments)
+
+        btnEmergency =
+            findViewById(R.id.btnEmergency)
+
+        btnNotifications =
+            findViewById(R.id.btnNotifications)
+
+        btnSettings =
+            findViewById(R.id.btnSettings)
 
 
-        <Button
-            android:id="@+id/btnServiceReminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Service Reminders" />
+
+        // My Vehicles
+
+        btnMyVehicles.setOnClickListener {
+
+            startActivity(
+                Intent(
+                    this,
+                    VehicleListActivity::class.java
+                )
+            )
+
+        }
 
 
-        <Button
-            android:id="@+id/btnFuelTracker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Fuel Tracker" />
+
+        // Service Reminder
+
+        btnServiceReminder.setOnClickListener {
+
+            startActivity(
+                Intent(
+                    this,
+                    ReminderListActivity::class.java
+                )
+            )
+
+        }
 
 
-        <Button
-            android:id="@+id/btnMaintenance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Maintenance History" />
+
+        // Fuel Tracker
+
+        btnFuelTracker.setOnClickListener {
+
+            startActivity(
+                Intent(
+                    this,
+                    FuelListActivity::class.java
+                )
+            )
+
+        }
 
 
-        <Button
-            android:id="@+id/btnDocuments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Vehicle Documents" />
+
+        // Maintenance History
+
+        btnMaintenance.setOnClickListener {
+
+            Toast.makeText(
+                this,
+                "Maintenance History Coming Soon.",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        }
 
 
-        <Button
-            android:id="@+id/btnEmergency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Emergency Contacts" />
+
+        // Vehicle Documents
+
+        btnDocuments.setOnClickListener {
+
+            Toast.makeText(
+                this,
+                "Vehicle Documents Coming Soon.",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        }
 
 
-        <Button
-            android:id="@+id/btnNotifications"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Notifications" />
+
+        // Emergency Contacts
+
+        btnEmergency.setOnClickListener {
+
+            Toast.makeText(
+                this,
+                "Emergency Contacts Coming Soon.",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        }
 
 
-        <Button
-            android:id="@+id/btnSettings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Settings" />
 
-    </LinearLayout>
+        // Notifications
 
-</ScrollView>
+        btnNotifications.setOnClickListener {
+
+            Toast.makeText(
+                this,
+                "Notifications Coming Soon.",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        }
+
+
+
+        // Settings
+
+        btnSettings.setOnClickListener {
+
+            Toast.makeText(
+                this,
+                "Settings Coming Soon.",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        }
+
+    }
+}
