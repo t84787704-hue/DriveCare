@@ -1,166 +1,77 @@
-package com.drivecare.app
+<?xml version="1.0" encoding="utf-8"?>
 
-import android.content.Intent
-import android.os.Bundle
-import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-class MainActivity : AppCompatActivity() {
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    private lateinit var btnMyVehicles: Button
-    private lateinit var btnServiceReminder: Button
-    private lateinit var btnFuelTracker: Button
-    private lateinit var btnMaintenance: Button
-    private lateinit var btnDocuments: Button
-    private lateinit var btnEmergency: Button
-    private lateinit var btnNotifications: Button
-    private lateinit var btnSettings: Button
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DriveCare"
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Worldwide Vehicle Assistant"
+            android:textSize="16sp"
+            android:paddingBottom="25dp" />
 
-        setContentView(R.layout.activity_main)
+        <Button
+            android:id="@+id/btnMyVehicles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Vehicles" />
 
+        <Button
+            android:id="@+id/btnServiceReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Service Reminders" />
 
-        btnMyVehicles =
-            findViewById(R.id.btnMyVehicles)
+        <Button
+            android:id="@+id/btnFuelTracker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fuel Tracker" />
 
-        btnServiceReminder =
-            findViewById(R.id.btnServiceReminder)
+        <Button
+            android:id="@+id/btnMaintenance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Maintenance History" />
 
-        btnFuelTracker =
-            findViewById(R.id.btnFuelTracker)
+        <Button
+            android:id="@+id/btnDocuments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vehicle Documents" />
 
-        btnMaintenance =
-            findViewById(R.id.btnMaintenance)
+        <Button
+            android:id="@+id/btnEmergency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emergency Contacts" />
 
-        btnDocuments =
-            findViewById(R.id.btnDocuments)
+        <Button
+            android:id="@+id/btnNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notifications" />
 
-        btnEmergency =
-            findViewById(R.id.btnEmergency)
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Settings" />
 
-        btnNotifications =
-            findViewById(R.id.btnNotifications)
+    </LinearLayout>
 
-        btnSettings =
-            findViewById(R.id.btnSettings)
-
-
-
-        // My Vehicles
-
-        btnMyVehicles.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    VehicleListActivity::class.java
-                )
-            )
-
-        }
-
-
-
-        // Service Reminder
-
-        btnServiceReminder.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    ReminderListActivity::class.java
-                )
-            )
-
-        }
-
-
-
-        // Fuel Tracker
-
-        btnFuelTracker.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    FuelListActivity::class.java
-                )
-            )
-
-        }
-
-
-
-        // Maintenance History
-
-        btnMaintenance.setOnClickListener {
-
-            Toast.makeText(
-                this,
-                "Maintenance History Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-        }
-
-
-
-        // Vehicle Documents
-
-        btnDocuments.setOnClickListener {
-
-            Toast.makeText(
-                this,
-                "Vehicle Documents Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-        }
-
-
-
-        // Emergency Contacts
-
-        btnEmergency.setOnClickListener {
-
-            Toast.makeText(
-                this,
-                "Emergency Contacts Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-        }
-
-
-
-        // Notifications
-
-        btnNotifications.setOnClickListener {
-
-            Toast.makeText(
-                this,
-                "Notifications Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-        }
-
-
-
-        // Settings
-
-        btnSettings.setOnClickListener {
-
-            Toast.makeText(
-                this,
-                "Settings Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-        }
-
-    }
-}
+</ScrollView>
