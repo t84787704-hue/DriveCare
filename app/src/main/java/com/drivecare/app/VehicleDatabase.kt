@@ -10,9 +10,10 @@ import androidx.room.RoomDatabase
         Vehicle::class,
         Reminder::class,
         FuelEntry::class,
-        Maintenance::class
+        Maintenance::class,
+        Document::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class VehicleDatabase : RoomDatabase() {
@@ -28,6 +29,9 @@ abstract class VehicleDatabase : RoomDatabase() {
 
     // Maintenance History Module
     abstract fun maintenanceDao(): MaintenanceDao
+
+    // Documents Module
+    abstract fun documentDao(): DocumentDao
 
 
     companion object {
