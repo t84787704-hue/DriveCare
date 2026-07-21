@@ -1,80 +1,37 @@
 package com.drivecare.app
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 
-class ReminderAdapter(
-    private val reminderList: List<Reminder>
-) : RecyclerView.Adapter<ReminderAdapter.ReminderViewHolder>() {
+@Dao
+interface ReminderDao {
 
-    class ReminderViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
+    @Insert
+    suspend fun insertReminder(
+        reminder: Reminder
+    )
 
-        val tvVehicleName: TextView =
-            itemView.findViewById(R.id.tvVehicleName)
+    @Update
+    suspend fun updateReminder(
+        reminder: Reminder
+    )
 
-        val tvReminderTitle: TextView =
-            itemView.findViewById(R.id.tvReminderTitle)
+    @Delete
+    suspend fun deleteReminder(
+        reminder: Reminder
+    )
 
-        val tvReminderDetails: TextView =
-            itemView.findViewById(R.id.tvReminderDetails)
-    }
+    @Query("SELECT * FROM reminders ORDER BY createdAt DESC")
+    suspend fun getAllReminders(): List<Reminder>
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ReminderViewHolder {
+    @Query("SELECT * FROM reminders WHERE id = :id")
+    suspend fun getReminderById(
+        id: Int
+    ): Reminder?
 
-        val view = LayoutInflater.from(parent.context)
-            .inflate(
-                R.layout.item_reminder,
-                parent,
-                false
-            )
-
-        return ReminderViewHolder(view)
-    }
-
-    override fun onBindViewHolder(
-        holder: ReminderViewHolder,
-        position: Int
-    ) {
-
-        val reminder = reminderList[position]
-
-        // Status automatically calculate hoga
-        val status =
-            ReminderUtils.calculateStatus(
-                reminder.dueDate
-            )
-
-        holder.tvVehicleName.text =
-            reminder.vehicleName
-
-        holder.tvReminderTitle.text =
-            reminder.reminderTitle
-
-        holder.tvReminderDetails.text =
-            """
-Reminder Type : ${reminder.reminderType}
-
-Due Date : ${reminder.dueDate}
-
-Current Odometer : ${reminder.currentOdometer}
-
-Next Service Odometer : ${reminder.nextServiceOdometer}
-
-Status : $status
-
-Notes : ${reminder.notes}
-            """.trimIndent()
-    }
-
-    override fun getItemCount(): Int {
-
-        return reminderList.size
-    }
+    @Query("DELETE FROM reminders")
+    suspend fun deleteAllReminders()
 }
