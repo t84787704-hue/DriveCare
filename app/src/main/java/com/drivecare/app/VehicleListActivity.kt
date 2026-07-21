@@ -6,6 +6,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -14,6 +16,7 @@ class VehicleListActivity : AppCompatActivity() {
 
     private lateinit var btnAddVehicle: Button
     private lateinit var tvNoVehicles: TextView
+    private lateinit var rvVehicles: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +24,9 @@ class VehicleListActivity : AppCompatActivity() {
 
         btnAddVehicle = findViewById(R.id.btnAddVehicle)
         tvNoVehicles = findViewById(R.id.tvNoVehicles)
+        rvVehicles = findViewById(R.id.rvVehicles)
+
+        rvVehicles.layoutManager = LinearLayoutManager(this)
 
         btnAddVehicle.setOnClickListener {
 
@@ -44,36 +50,27 @@ class VehicleListActivity : AppCompatActivity() {
 
         lifecycleScope.launch(Dispatchers.IO) {
 
-            try {
+            val vehicleList = VehicleDatabase
+                .getDatabase(applicationContext)
+                .vehicleDao()
+                .getAllVehicles()
 
-                val vehicleList = VehicleDatabase
-                    .getDatabase(applicationContext)
-                    .vehicleDao()
-                    .getAllVehicles()
+            withContext(Dispatchers.Main) {
 
-                withContext(Dispatchers.Main) {
-
-                    if (vehicleList.isEmpty()) {
-
-                        tvNoVehicles.text =
-                            "No Vehicles Added Yet."
-
-                    } else {
-
-                        tvNoVehicles.text =
-                            "Total Vehicles : ${vehicleList.size}"
-
-                    }
-                }
-
-            } catch (e: Exception) {
-
-                withContext(Dispatchers.Main) {
+                if (vehicleList.isEmpty()) {
 
                     tvNoVehicles.text =
-                        "Error : ${e.message}"
+                        "No Vehicles Added Yet."
+
+                } else {
+
+                    tvNoVehicles.text =
+                        "Total Vehicles : ${vehicleList.size}"
 
                 }
+
+                rvVehicles.adapter =
+                    VehicleAdapter(vehicleList)
             }
         }
     }
