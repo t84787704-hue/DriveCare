@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.CoroutineScope
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -42,25 +42,36 @@ class VehicleListActivity : AppCompatActivity() {
 
     private fun loadVehicles() {
 
-        CoroutineScope(Dispatchers.IO).launch {
+        lifecycleScope.launch(Dispatchers.IO) {
 
-            val vehicleList =
-                VehicleDatabase
+            try {
+
+                val vehicleList = VehicleDatabase
                     .getDatabase(applicationContext)
                     .vehicleDao()
                     .getAllVehicles()
 
-            withContext(Dispatchers.Main) {
+                withContext(Dispatchers.Main) {
 
-                if (vehicleList.isEmpty()) {
+                    if (vehicleList.isEmpty()) {
+
+                        tvNoVehicles.text =
+                            "No Vehicles Added Yet."
+
+                    } else {
+
+                        tvNoVehicles.text =
+                            "Total Vehicles : ${vehicleList.size}"
+
+                    }
+                }
+
+            } catch (e: Exception) {
+
+                withContext(Dispatchers.Main) {
 
                     tvNoVehicles.text =
-                        "No Vehicles Added Yet."
-
-                } else {
-
-                    tvNoVehicles.text =
-                        "Total Vehicles : ${vehicleList.size}"
+                        "Error : ${e.message}"
 
                 }
             }
