@@ -31,6 +31,17 @@ interface MaintenanceDao {
     suspend fun getAllMaintenance():
             List<Maintenance>
 
+
+    @Query(
+        "SELECT * FROM maintenance_history " +
+                "WHERE vehicleName = :vehicleName " +
+                "ORDER BY createdAt DESC"
+    )
+    suspend fun getMaintenanceByVehicle(
+        vehicleName: String
+    ): List<Maintenance>
+
+
     @Query(
         "SELECT * FROM maintenance_history " +
                 "WHERE id = :id"
@@ -38,6 +49,7 @@ interface MaintenanceDao {
     suspend fun getMaintenanceById(
         id: Int
     ): Maintenance?
+
 
     @Query(
         "DELETE FROM maintenance_history"
