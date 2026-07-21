@@ -1,22 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/etMaintenanceName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Maintenance Name" />
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnSaveMaintenance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save Maintenance" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Maintenance Record"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
-</LinearLayout>
+
+        <EditText
+            android:id="@+id/etVehicleName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vehicle Name" />
+
+
+        <EditText
+            android:id="@+id/etServiceTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Service Title" />
+
+
+        <EditText
+            android:id="@+id/etServiceType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Service Type (Oil Change / Brake Service / etc.)" />
+
+
+        <EditText
+            android:id="@+id/etServiceDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Service Date (DD-MM-YYYY)" />
+
+
+        <EditText
+            android:id="@+id/etCurrentOdometer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Current Odometer (KM)" />
+
+
+        <EditText
+            android:id="@+id/etServiceCost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Service Cost" />
+
+
+        <EditText
+            android:id="@+id/etWorkshopName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Workshop Name" />
+
+
+        <EditText
+            android:id="@+id/etNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Notes (Optional)" />
+
+
+        <Button
+            android:id="@+id/btnSaveMaintenance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Maintenance Record" />
+
+    </LinearLayout>
+
+</ScrollView>
