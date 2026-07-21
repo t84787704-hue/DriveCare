@@ -45,6 +45,10 @@
         <activity
             android:name=".NotificationsActivity" />
 
+        <!-- Settings -->
+        <activity
+            android:name=".SettingsActivity" />
+
         <!-- Main Screen -->
         <activity
             android:name=".MainActivity"
