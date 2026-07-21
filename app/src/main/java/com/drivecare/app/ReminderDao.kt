@@ -1,50 +1,80 @@
 package com.drivecare.app
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
-@Dao
-interface ReminderDao {
+class ReminderAdapter(
+    private val reminderList: List<Reminder>
+) : RecyclerView.Adapter<ReminderAdapter.ReminderViewHolder>() {
 
-    @Insert
-    suspend fun insertReminder(reminder: Reminder)
+    class ReminderViewHolder(itemView: View)
+        : RecyclerView.ViewHolder(itemView) {
 
-    @Update
-    suspend fun updateReminder(reminder: Reminder)
+        val tvVehicleName: TextView =
+            itemView.findViewById(R.id.tvVehicleName)
 
-    @Delete
-    suspend fun deleteReminder(reminder: Reminder)
+        val tvReminderTitle: TextView =
+            itemView.findViewById(R.id.tvReminderTitle)
 
-    @Query("SELECT * FROM reminders ORDER BY dueDate ASC")
-    suspend fun getAllReminders(): List<Reminder>
+        val tvReminderDetails: TextView =
+            itemView.findViewById(R.id.tvReminderDetails)
+    }
 
-    @Query("SELECT * FROM reminders WHERE id = :id")
-    suspend fun getReminderById(id: Int): Reminder?
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ReminderViewHolder {
 
-    @Query("DELETE FROM reminders")
-    suspend fun deleteAllReminders()
+        val view = LayoutInflater.from(parent.context)
+            .inflate(
+                R.layout.item_reminder,
+                parent,
+                false
+            )
 
+        return ReminderViewHolder(view)
+    }
 
-    // Upcoming Reminders
-    @Query("SELECT * FROM reminders WHERE status = 'Upcoming'")
-    suspend fun getUpcomingReminders(): List<Reminder>
+    override fun onBindViewHolder(
+        holder: ReminderViewHolder,
+        position: Int
+    ) {
 
+        val reminder = reminderList[position]
 
-    // Due Today
-    @Query("SELECT * FROM reminders WHERE status = 'Due Today'")
-    suspend fun getTodayReminders(): List<Reminder>
+        // Status automatically calculate hoga
+        val status =
+            ReminderUtils.calculateStatus(
+                reminder.dueDate
+            )
 
+        holder.tvVehicleName.text =
+            reminder.vehicleName
 
-    // Overdue Reminders
-    @Query("SELECT * FROM reminders WHERE status = 'Overdue'")
-    suspend fun getOverdueReminders(): List<Reminder>
+        holder.tvReminderTitle.text =
+            reminder.reminderTitle
 
+        holder.tvReminderDetails.text =
+            """
+Reminder Type : ${reminder.reminderType}
 
-    // Completed Reminders
-    @Query("SELECT * FROM reminders WHERE status = 'Completed'")
-    suspend fun getCompletedReminders(): List<Reminder>
+Due Date : ${reminder.dueDate}
 
+Current Odometer : ${reminder.currentOdometer}
+
+Next Service Odometer : ${reminder.nextServiceOdometer}
+
+Status : $status
+
+Notes : ${reminder.notes}
+            """.trimIndent()
+    }
+
+    override fun getItemCount(): Int {
+
+        return reminderList.size
+    }
 }
