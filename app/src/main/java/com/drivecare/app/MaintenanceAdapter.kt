@@ -10,8 +10,9 @@ class MaintenanceAdapter(
     private val maintenanceList: List<Maintenance>
 ) : RecyclerView.Adapter<MaintenanceAdapter.MaintenanceViewHolder>() {
 
-    class MaintenanceViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
+    class MaintenanceViewHolder(
+        itemView: View
+    ) : RecyclerView.ViewHolder(itemView) {
 
         val tvServiceTitle: TextView =
             itemView.findViewById(R.id.tvServiceTitle)
@@ -60,4 +61,19 @@ class MaintenanceAdapter(
         holder.tvServiceDate.text =
             "Service Date : ${maintenance.serviceDate}"
 
-        holder.tvMaintenanceDetails
+        holder.tvMaintenanceDetails.text =
+            """
+Vehicle : ${maintenance.vehicleName}
+Current Odometer : ${maintenance.currentOdometer}
+Service Cost : ${maintenance.serviceCost}
+Workshop Name : ${maintenance.workshopName}
+Notes : ${maintenance.notes}
+            """.trimIndent()
+
+    }
+
+    override fun getItemCount(): Int {
+        return maintenanceList.size
+    }
+
+}
