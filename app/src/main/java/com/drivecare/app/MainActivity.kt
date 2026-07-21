@@ -42,5 +42,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, EmergencyActivity::class.java))
         }
 
+        // Notifications
+        findViewById<Button>(R.id.btnNotifications).setOnClickListener {
+            startActivity(Intent(this, NotificationsActivity::class.java))
+        }
+
     }
 }
