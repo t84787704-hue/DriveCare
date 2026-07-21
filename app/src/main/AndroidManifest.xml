@@ -8,18 +8,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
 
+        <!-- Fuel Tracker -->
+        <activity
+            android:name=".FuelListActivity" />
+
+        <activity
+            android:name=".AddFuelActivity" />
+
+        <!-- Service Reminder -->
         <activity
             android:name=".ReminderListActivity" />
 
         <activity
             android:name=".AddReminderActivity" />
 
+        <!-- My Vehicles -->
         <activity
             android:name=".VehicleListActivity" />
 
         <activity
             android:name=".AddVehicleActivity" />
 
+        <!-- Main Screen -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
