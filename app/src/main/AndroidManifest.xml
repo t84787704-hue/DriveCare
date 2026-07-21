@@ -29,6 +29,10 @@
         <activity
             android:name=".AddVehicleActivity" />
 
+        <!-- Maintenance History -->
+        <activity
+            android:name=".MaintenanceHistoryActivity" />
+
         <!-- Main Screen -->
         <activity
             android:name=".MainActivity"
