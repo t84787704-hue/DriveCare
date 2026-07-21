@@ -17,7 +17,15 @@ class AddVehicleActivity : AppCompatActivity() {
     private lateinit var etModel: EditText
     private lateinit var etYear: EditText
     private lateinit var etRegistration: EditText
+    private lateinit var etEngineNumber: EditText
+    private lateinit var etChassisNumber: EditText
     private lateinit var etFuelType: EditText
+    private lateinit var etOdometer: EditText
+    private lateinit var etPurchaseDate: EditText
+    private lateinit var etCountry: EditText
+    private lateinit var etDistanceUnit: EditText
+    private lateinit var etInsuranceDetails: EditText
+    private lateinit var etNotes: EditText
     private lateinit var btnSaveVehicle: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +38,15 @@ class AddVehicleActivity : AppCompatActivity() {
         etModel = findViewById(R.id.etModel)
         etYear = findViewById(R.id.etYear)
         etRegistration = findViewById(R.id.etRegistration)
+        etEngineNumber = findViewById(R.id.etEngineNumber)
+        etChassisNumber = findViewById(R.id.etChassisNumber)
         etFuelType = findViewById(R.id.etFuelType)
+        etOdometer = findViewById(R.id.etOdometer)
+        etPurchaseDate = findViewById(R.id.etPurchaseDate)
+        etCountry = findViewById(R.id.etCountry)
+        etDistanceUnit = findViewById(R.id.etDistanceUnit)
+        etInsuranceDetails = findViewById(R.id.etInsuranceDetails)
+        etNotes = findViewById(R.id.etNotes)
         btnSaveVehicle = findViewById(R.id.btnSaveVehicle)
 
         btnSaveVehicle.setOnClickListener {
@@ -46,7 +62,15 @@ class AddVehicleActivity : AppCompatActivity() {
         val model = etModel.text.toString().trim()
         val year = etYear.text.toString().trim()
         val registration = etRegistration.text.toString().trim()
+        val engineNumber = etEngineNumber.text.toString().trim()
+        val chassisNumber = etChassisNumber.text.toString().trim()
         val fuelType = etFuelType.text.toString().trim()
+        val odometer = etOdometer.text.toString().trim()
+        val purchaseDate = etPurchaseDate.text.toString().trim()
+        val country = etCountry.text.toString().trim()
+        val distanceUnit = etDistanceUnit.text.toString().trim()
+        val insuranceDetails = etInsuranceDetails.text.toString().trim()
+        val notes = etNotes.text.toString().trim()
 
         if (vehicleName.isEmpty()
             || vehicleType.isEmpty()
@@ -54,11 +78,11 @@ class AddVehicleActivity : AppCompatActivity() {
             || model.isEmpty()
             || year.isEmpty()
             || registration.isEmpty()
-            || fuelType.isEmpty()
         ) {
+
             Toast.makeText(
                 this,
-                "Please fill all fields.",
+                "Please fill all required fields.",
                 Toast.LENGTH_SHORT
             ).show()
 
@@ -72,14 +96,16 @@ class AddVehicleActivity : AppCompatActivity() {
             model = model,
             manufacturingYear = year,
             registrationNumber = registration,
+            engineNumber = engineNumber,
+            chassisNumber = chassisNumber,
             fuelType = fuelType,
-            odometerReading = "",
-            purchaseDate = "",
-            insuranceDetails = "",
+            odometerReading = odometer,
+            purchaseDate = purchaseDate,
+            insuranceDetails = insuranceDetails,
             vehiclePhoto = "",
-            country = "",
-            distanceUnit = "KM",
-            notes = ""
+            country = country,
+            distanceUnit = distanceUnit,
+            notes = notes
         )
 
         lifecycleScope.launch {
@@ -113,6 +139,7 @@ class AddVehicleActivity : AppCompatActivity() {
                     "Error : ${e.message}",
                     Toast.LENGTH_LONG
                 ).show()
+
             }
         }
     }
