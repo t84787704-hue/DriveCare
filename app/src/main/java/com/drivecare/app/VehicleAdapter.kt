@@ -1,5 +1,6 @@
 package com.drivecare.app
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -77,6 +78,42 @@ Distance Unit : ${vehicle.distanceUnit}
 Insurance : ${vehicle.insuranceDetails}
 Notes : ${vehicle.notes}
             """.trimIndent()
+
+
+        // Open Vehicle Details Screen
+
+        holder.itemView.setOnClickListener {
+
+            val intent = Intent(
+                holder.itemView.context,
+                VehicleDetailsActivity::class.java
+            )
+
+            intent.putExtra(
+                "vehicleName",
+                vehicle.vehicleName
+            )
+
+            intent.putExtra(
+                "vehicleType",
+                vehicle.vehicleType
+            )
+
+            intent.putExtra(
+                "vehicleBrand",
+                vehicle.brand
+            )
+
+            intent.putExtra(
+                "vehicleModel",
+                vehicle.model
+            )
+
+            holder.itemView.context
+                .startActivity(intent)
+
+        }
+
     }
 
     override fun getItemCount(): Int {
