@@ -27,5 +27,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, FuelListActivity::class.java))
         }
 
+        // Maintenance History
+        findViewById<Button>(R.id.btnMaintenance).setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    MaintenanceHistoryActivity::class.java
+                )
+            )
+        }
+
     }
 }
