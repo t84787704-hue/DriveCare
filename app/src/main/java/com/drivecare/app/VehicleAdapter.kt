@@ -7,20 +7,23 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class VehicleAdapter(
-    private var vehicleList: List<Vehicle>
+    private val vehicleList: List<Vehicle>
 ) : RecyclerView.Adapter<VehicleAdapter.VehicleViewHolder>() {
 
-    class VehicleViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
+    class VehicleViewHolder(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
 
         val tvVehicleName: TextView =
             itemView.findViewById(R.id.tvVehicleName)
 
-        val tvVehicleType: TextView =
-            itemView.findViewById(R.id.tvVehicleType)
-
         val tvVehicleBrand: TextView =
             itemView.findViewById(R.id.tvVehicleBrand)
+
+        val tvVehicleModel: TextView =
+            itemView.findViewById(R.id.tvVehicleModel)
+
+        val tvRegistrationNumber: TextView =
+            itemView.findViewById(R.id.tvRegistrationNumber)
     }
 
     override fun onCreateViewHolder(
@@ -48,21 +51,18 @@ class VehicleAdapter(
         holder.tvVehicleName.text =
             vehicle.vehicleName
 
-        holder.tvVehicleType.text =
-            vehicle.vehicleType
-
         holder.tvVehicleBrand.text =
-            vehicle.brand
+            "Brand : ${vehicle.brand}"
+
+        holder.tvVehicleModel.text =
+            "Model : ${vehicle.model}"
+
+        holder.tvRegistrationNumber.text =
+            "Registration : ${vehicle.registrationNumber}"
     }
 
     override fun getItemCount(): Int {
-        return vehicleList.size
-    }
 
-    fun updateVehicles(
-        newVehicleList: List<Vehicle>
-    ) {
-        vehicleList = newVehicleList
-        notifyDataSetChanged()
+        return vehicleList.size
     }
 }
