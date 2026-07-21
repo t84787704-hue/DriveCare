@@ -41,6 +41,10 @@
         <activity
             android:name=".DocumentsActivity" />
 
+        <!-- Add Vehicle Document -->
+        <activity
+            android:name=".AddDocumentActivity" />
+
         <!-- Emergency Contacts -->
         <activity
             android:name=".EmergencyActivity" />
