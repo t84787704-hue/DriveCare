@@ -21,6 +21,11 @@ class VehicleDetailsActivity : AppCompatActivity() {
     private lateinit var btnDocuments: Button
     private lateinit var btnInsurance: Button
 
+    private var vehicleName: String = ""
+    private var vehicleType: String = ""
+    private var vehicleBrand: String = ""
+    private var vehicleModel: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,13 +46,27 @@ class VehicleDetailsActivity : AppCompatActivity() {
         btnInsurance = findViewById(R.id.btnInsurance)
 
 
-        // Temporary Data
-        // Future mein ye Room Database se load hoga.
+        // Receive Vehicle Data
 
-        tvVehicleName.text = "Vehicle Name"
-        tvVehicleType.text = "Vehicle Type"
-        tvVehicleBrand.text = "Vehicle Brand"
-        tvVehicleModel.text = "Vehicle Model"
+        vehicleName =
+            intent.getStringExtra("vehicleName") ?: ""
+
+        vehicleType =
+            intent.getStringExtra("vehicleType") ?: ""
+
+        vehicleBrand =
+            intent.getStringExtra("vehicleBrand") ?: ""
+
+        vehicleModel =
+            intent.getStringExtra("vehicleModel") ?: ""
+
+
+        // Show Vehicle Data
+
+        tvVehicleName.text = vehicleName
+        tvVehicleType.text = "Type : $vehicleType"
+        tvVehicleBrand.text = "Brand : $vehicleBrand"
+        tvVehicleModel.text = "Model : $vehicleModel"
 
 
         // Edit Vehicle
