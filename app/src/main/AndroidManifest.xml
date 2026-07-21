@@ -49,6 +49,10 @@
         <activity
             android:name=".EmergencyActivity" />
 
+        <!-- Add Emergency Contact -->
+        <activity
+            android:name=".AddEmergencyActivity" />
+
         <!-- Notifications -->
         <activity
             android:name=".NotificationsActivity" />
