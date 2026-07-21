@@ -1,22 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/etDocumentName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Document Name" />
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnSaveDocument"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save Document" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Vehicle Document"
+            android:textSize="28sp"
+            android:textStyle="bold"/>
+
+
+        <EditText
+            android:id="@+id/etVehicleName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vehicle Name"/>
+
+
+        <EditText
+            android:id="@+id/etDocumentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Document Title"/>
+
+
+        <EditText
+            android:id="@+id/etDocumentType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Document Type"/>
+
+
+        <EditText
+            android:id="@+id/etDocumentNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Document Number"/>
+
+
+        <EditText
+            android:id="@+id/etIssueDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Issue Date (DD-MM-YYYY)"/>
+
+
+        <EditText
+            android:id="@+id/etExpiryDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Expiry Date (DD-MM-YYYY)"/>
+
+
+        <EditText
+            android:id="@+id/etNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Notes (Optional)"/>
+
+
+        <Button
+            android:id="@+id/btnSaveDocument"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Document"/>
+
+    </LinearLayout>
+
+</ScrollView>
