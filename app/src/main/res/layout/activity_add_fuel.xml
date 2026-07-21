@@ -21,7 +21,10 @@
             android:id="@+id/etVehicleName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Vehicle Name" />
+            android:hint="Vehicle Name"
+            android:enabled="false"
+            android:focusable="false"
+            android:clickable="false" />
 
         <EditText
             android:id="@+id/etFuelDate"
