@@ -8,20 +8,24 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnMyVehicles = findViewById<Button>(R.id.btnMyVehicles)
-
-        btnMyVehicles.setOnClickListener {
-
-            val intent = Intent(
-                this,
-                VehicleListActivity::class.java
-            )
-
-            startActivity(intent)
-
+        // My Vehicles
+        findViewById<Button>(R.id.btnMyVehicles).setOnClickListener {
+            startActivity(Intent(this, VehicleListActivity::class.java))
         }
+
+        // Service Reminders
+        findViewById<Button>(R.id.btnServiceReminder).setOnClickListener {
+            startActivity(Intent(this, ReminderListActivity::class.java))
+        }
+
+        // Fuel Tracker
+        findViewById<Button>(R.id.btnFuelTracker).setOnClickListener {
+            startActivity(Intent(this, FuelListActivity::class.java))
+        }
+
     }
 }
