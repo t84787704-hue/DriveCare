@@ -37,5 +37,15 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        // Vehicle Documents
+        findViewById<Button>(R.id.btnDocuments).setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    DocumentsActivity::class.java
+                )
+            )
+        }
+
     }
 }
