@@ -24,6 +24,9 @@ class VehicleAdapter(
 
         val tvRegistrationNumber: TextView =
             itemView.findViewById(R.id.tvRegistrationNumber)
+
+        val tvVehicleDetails: TextView =
+            itemView.findViewById(R.id.tvVehicleDetails)
     }
 
     override fun onCreateViewHolder(
@@ -59,10 +62,24 @@ class VehicleAdapter(
 
         holder.tvRegistrationNumber.text =
             "Registration : ${vehicle.registrationNumber}"
+
+        holder.tvVehicleDetails.text =
+            """
+Vehicle Type : ${vehicle.vehicleType}
+Manufacturing Year : ${vehicle.manufacturingYear}
+Engine Number : ${vehicle.engineNumber}
+Chassis Number : ${vehicle.chassisNumber}
+Fuel Type : ${vehicle.fuelType}
+Odometer : ${vehicle.odometerReading}
+Purchase Date : ${vehicle.purchaseDate}
+Country : ${vehicle.country}
+Distance Unit : ${vehicle.distanceUnit}
+Insurance : ${vehicle.insuranceDetails}
+Notes : ${vehicle.notes}
+            """.trimIndent()
     }
 
     override fun getItemCount(): Int {
-
         return vehicleList.size
     }
 }
