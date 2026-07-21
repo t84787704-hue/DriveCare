@@ -1,6 +1,8 @@
 package com.drivecare.app
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class MaintenanceHistoryActivity : AppCompatActivity() {
@@ -13,5 +15,16 @@ class MaintenanceHistoryActivity : AppCompatActivity() {
         )
 
         title = "Maintenance History"
+
+        findViewById<Button>(R.id.btnAddMaintenance)
+            .setOnClickListener {
+
+                startActivity(
+                    Intent(
+                        this,
+                        AddMaintenanceActivity::class.java
+                    )
+                )
+            }
     }
 }
