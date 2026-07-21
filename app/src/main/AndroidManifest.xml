@@ -65,6 +65,10 @@
         <activity
             android:name=".SettingsActivity" />
 
+        <!-- Add Settings -->
+        <activity
+            android:name=".AddSettingsActivity" />
+
         <!-- Main Screen -->
         <activity
             android:name=".MainActivity"
