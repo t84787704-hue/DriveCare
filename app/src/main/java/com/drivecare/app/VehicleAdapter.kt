@@ -79,14 +79,16 @@ Insurance : ${vehicle.insuranceDetails}
 Notes : ${vehicle.notes}
             """.trimIndent()
 
-
-        // Open Vehicle Details Screen
-
         holder.itemView.setOnClickListener {
 
             val intent = Intent(
                 holder.itemView.context,
                 VehicleDetailsActivity::class.java
+            )
+
+            intent.putExtra(
+                "vehicleId",
+                vehicle.id
             )
 
             intent.putExtra(
@@ -111,9 +113,7 @@ Notes : ${vehicle.notes}
 
             holder.itemView.context
                 .startActivity(intent)
-
         }
-
     }
 
     override fun getItemCount(): Int {
