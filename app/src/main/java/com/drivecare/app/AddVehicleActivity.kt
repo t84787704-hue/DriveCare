@@ -28,10 +28,34 @@ class AddVehicleActivity : AppCompatActivity() {
     private lateinit var etNotes: EditText
     private lateinit var btnSaveVehicle: Button
 
+    private var isEditMode = false
+    private var editingVehicleId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_vehicle)
 
+        initViews()
+
+        // Check if Edit Mode
+        isEditMode = intent.getBooleanExtra("isEditMode", false)
+        editingVehicleId = intent.getIntExtra("vehicleId", 0)
+
+        if (isEditMode && editingVehicleId != 0) {
+            title = "Edit Vehicle"
+            btnSaveVehicle.text = "Update Vehicle"
+            loadVehicleData()
+        } else {
+            title = "Add New Vehicle"
+            btnSaveVehicle.text = "Save Vehicle"
+        }
+
+        btnSaveVehicle.setOnClickListener {
+            saveVehicle()
+        }
+    }
+
+    private fun initViews() {
         etVehicleName = findViewById(R.id.etVehicleName)
         etVehicleType = findViewById(R.id.etVehicleType)
         etBrand = findViewById(R.id.etBrand)
@@ -48,14 +72,36 @@ class AddVehicleActivity : AppCompatActivity() {
         etInsuranceDetails = findViewById(R.id.etInsuranceDetails)
         etNotes = findViewById(R.id.etNotes)
         btnSaveVehicle = findViewById(R.id.btnSaveVehicle)
+    }
 
-        btnSaveVehicle.setOnClickListener {
-            saveVehicle()
+    private fun loadVehicleData() {
+        lifecycleScope.launch {
+            val vehicle = VehicleDatabase
+                .getDatabase(applicationContext)
+                .vehicleDao()
+                .getVehicleById(editingVehicleId)
+
+            vehicle?.let {
+                etVehicleName.setText(it.vehicleName)
+                etVehicleType.setText(it.vehicleType)
+                etBrand.setText(it.brand)
+                etModel.setText(it.model)
+                etYear.setText(it.manufacturingYear)
+                etRegistration.setText(it.registrationNumber)
+                etEngineNumber.setText(it.engineNumber)
+                etChassisNumber.setText(it.chassisNumber)
+                etFuelType.setText(it.fuelType)
+                etOdometer.setText(it.odometerReading)
+                etPurchaseDate.setText(it.purchaseDate)
+                etCountry.setText(it.country)
+                etDistanceUnit.setText(it.distanceUnit)
+                etInsuranceDetails.setText(it.insuranceDetails)
+                etNotes.setText(it.notes)
+            }
         }
     }
 
     private fun saveVehicle() {
-
         val vehicleName = etVehicleName.text.toString().trim()
         val vehicleType = etVehicleType.text.toString().trim()
         val brand = etBrand.text.toString().trim()
@@ -72,24 +118,14 @@ class AddVehicleActivity : AppCompatActivity() {
         val insuranceDetails = etInsuranceDetails.text.toString().trim()
         val notes = etNotes.text.toString().trim()
 
-        if (vehicleName.isEmpty()
-            || vehicleType.isEmpty()
-            || brand.isEmpty()
-            || model.isEmpty()
-            || year.isEmpty()
-            || registration.isEmpty()
-        ) {
-
-            Toast.makeText(
-                this,
-                "Please fill all required fields.",
-                Toast.LENGTH_SHORT
-            ).show()
-
+        if (vehicleName.isEmpty() || vehicleType.isEmpty() || brand.isEmpty() || 
+            model.isEmpty() || year.isEmpty() || registration.isEmpty()) {
+            Toast.makeText(this, "Please fill all required fields.", Toast.LENGTH_SHORT).show()
             return
         }
 
         val vehicle = Vehicle(
+            id = if (isEditMode) editingVehicleId else 0,  // Important for update
             vehicleName = vehicleName,
             vehicleType = vehicleType,
             brand = brand,
@@ -109,37 +145,22 @@ class AddVehicleActivity : AppCompatActivity() {
         )
 
         lifecycleScope.launch {
-
             try {
+                val dao = VehicleDatabase.getDatabase(applicationContext).vehicleDao()
 
-                VehicleDatabase
-                    .getDatabase(applicationContext)
-                    .vehicleDao()
-                    .insertVehicle(vehicle)
+                if (isEditMode) {
+                    dao.updateVehicle(vehicle)
+                    Toast.makeText(this@AddVehicleActivity, "Vehicle Updated Successfully.", Toast.LENGTH_SHORT).show()
+                } else {
+                    dao.insertVehicle(vehicle)
+                    Toast.makeText(this@AddVehicleActivity, "Vehicle Saved Successfully.", Toast.LENGTH_SHORT).show()
+                }
 
-                Toast.makeText(
-                    this@AddVehicleActivity,
-                    "Vehicle Saved Successfully.",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                startActivity(
-                    Intent(
-                        this@AddVehicleActivity,
-                        VehicleListActivity::class.java
-                    )
-                )
-
+                startActivity(Intent(this@AddVehicleActivity, VehicleListActivity::class.java))
                 finish()
 
             } catch (e: Exception) {
-
-                Toast.makeText(
-                    this@AddVehicleActivity,
-                    "Error : ${e.message}",
-                    Toast.LENGTH_LONG
-                ).show()
-
+                Toast.makeText(this@AddVehicleActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }
