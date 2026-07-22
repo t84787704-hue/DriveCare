@@ -59,11 +59,11 @@ class AddFuelActivity : AppCompatActivity() {
         btnSaveFuel =
             findViewById(R.id.btnSaveFuel)
 
+        if (vehicleName.isNotEmpty()) {
 
-        // Automatically Set Vehicle Name
+            etVehicleName.setText(vehicleName)
 
-        etVehicleName.setText(vehicleName)
-
+        }
 
         btnSaveFuel.setOnClickListener {
 
@@ -71,13 +71,15 @@ class AddFuelActivity : AppCompatActivity() {
         }
     }
 
-
     private fun saveFuelEntry() {
+
+        val enteredVehicleName =
+            etVehicleName.text.toString().trim()
 
         val fuelEntry = FuelEntry(
 
             vehicleName =
-                vehicleName,
+                enteredVehicleName,
 
             fuelDate =
                 etFuelDate.text.toString(),
@@ -100,7 +102,6 @@ class AddFuelActivity : AppCompatActivity() {
             notes =
                 etNotes.text.toString()
         )
-
 
         lifecycleScope.launch(Dispatchers.IO) {
 
