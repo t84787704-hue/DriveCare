@@ -33,12 +33,10 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_vehicle_details)
 
         title = "Vehicle Details"
 
-        // Views initialize
         tvVehicleName = findViewById(R.id.tvVehicleName)
         tvVehicleType = findViewById(R.id.tvVehicleType)
         tvVehicleBrand = findViewById(R.id.tvVehicleBrand)
@@ -51,37 +49,30 @@ class VehicleDetailsActivity : AppCompatActivity() {
         btnDocuments = findViewById(R.id.btnDocuments)
         btnInsurance = findViewById(R.id.btnInsurance)
 
-        // Data from Intent
         vehicleId = intent.getIntExtra("vehicleId", 0)
         vehicleName = intent.getStringExtra("vehicleName") ?: ""
         vehicleType = intent.getStringExtra("vehicleType") ?: ""
         vehicleBrand = intent.getStringExtra("vehicleBrand") ?: ""
         vehicleModel = intent.getStringExtra("vehicleModel") ?: ""
 
-        // Display data
         tvVehicleName.text = vehicleName
         tvVehicleType.text = "Type : $vehicleType"
         tvVehicleBrand.text = "Brand : $vehicleBrand"
         tvVehicleModel.text = "Model : $vehicleModel"
 
-        // ==================== BUTTONS ====================
-
-        // EDIT BUTTON - Ab functional hai
         btnEditVehicle.setOnClickListener {
             val editIntent = Intent(this, AddVehicleActivity::class.java).apply {
                 putExtra("vehicleId", vehicleId)
                 putExtra("isEditMode", true)
             }
             startActivity(editIntent)
-            finish() // Details screen band kar do
+            finish()
         }
 
-        // DELETE BUTTON
         btnDeleteVehicle.setOnClickListener {
             deleteVehicle()
         }
 
-        // Other buttons
         btnServiceHistory.setOnClickListener {
             startActivity(Intent(this, MaintenanceHistoryActivity::class.java))
         }
@@ -118,20 +109,12 @@ class VehicleDetailsActivity : AppCompatActivity() {
                     .deleteVehicle(vehicle)
 
                 runOnUiThread {
-                    Toast.makeText(
-                        this@VehicleDetailsActivity,
-                        "Vehicle Deleted Successfully.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this@VehicleDetailsActivity, "Vehicle Deleted Successfully.", Toast.LENGTH_SHORT).show()
                     finish()
                 }
             } else {
                 runOnUiThread {
-                    Toast.makeText(
-                        this@VehicleDetailsActivity,
-                        "Vehicle not found!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this@VehicleDetailsActivity, "Vehicle not found!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
