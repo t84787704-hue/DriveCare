@@ -38,6 +38,7 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
         title = "Vehicle Details"
 
+        // Views initialize
         tvVehicleName = findViewById(R.id.tvVehicleName)
         tvVehicleType = findViewById(R.id.tvVehicleType)
         tvVehicleBrand = findViewById(R.id.tvVehicleBrand)
@@ -50,118 +51,87 @@ class VehicleDetailsActivity : AppCompatActivity() {
         btnDocuments = findViewById(R.id.btnDocuments)
         btnInsurance = findViewById(R.id.btnInsurance)
 
-        vehicleId =
-            intent.getIntExtra("vehicleId", 0)
-Toast.makeText(
-    this,
-    "ID = $vehicleId",
-    Toast.LENGTH_LONG
-).show()
+        // Data from Intent
+        vehicleId = intent.getIntExtra("vehicleId", 0)
+        vehicleName = intent.getStringExtra("vehicleName") ?: ""
+        vehicleType = intent.getStringExtra("vehicleType") ?: ""
+        vehicleBrand = intent.getStringExtra("vehicleBrand") ?: ""
+        vehicleModel = intent.getStringExtra("vehicleModel") ?: ""
 
-        vehicleName =
-            intent.getStringExtra("vehicleName") ?: ""
-
-        vehicleType =
-            intent.getStringExtra("vehicleType") ?: ""
-
-        vehicleBrand =
-            intent.getStringExtra("vehicleBrand") ?: ""
-
-        vehicleModel =
-            intent.getStringExtra("vehicleModel") ?: ""
-
+        // Display data
         tvVehicleName.text = vehicleName
         tvVehicleType.text = "Type : $vehicleType"
         tvVehicleBrand.text = "Brand : $vehicleBrand"
         tvVehicleModel.text = "Model : $vehicleModel"
 
+        // ==================== BUTTONS ====================
+
+        // EDIT BUTTON - Ab functional hai
         btnEditVehicle.setOnClickListener {
-
-            Toast.makeText(
-                this,
-                "Edit Vehicle Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
-
+            val editIntent = Intent(this, AddVehicleActivity::class.java).apply {
+                putExtra("vehicleId", vehicleId)
+                putExtra("isEditMode", true)
+            }
+            startActivity(editIntent)
+            finish() // Details screen band kar do
         }
 
+        // DELETE BUTTON
         btnDeleteVehicle.setOnClickListener {
-
             deleteVehicle()
-
         }
 
+        // Other buttons
         btnServiceHistory.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    MaintenanceHistoryActivity::class.java
-                )
-            )
-
+            startActivity(Intent(this, MaintenanceHistoryActivity::class.java))
         }
 
         btnFuelHistory.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    FuelListActivity::class.java
-                )
-            )
-
+            startActivity(Intent(this, FuelListActivity::class.java))
         }
 
         btnDocuments.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    DocumentsActivity::class.java
-                )
-            )
-
+            startActivity(Intent(this, DocumentsActivity::class.java))
         }
 
         btnInsurance.setOnClickListener {
-
-            Toast.makeText(
-                this,
-                "Insurance Module Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
-
+            Toast.makeText(this, "Insurance Module Coming Soon.", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun deleteVehicle() {
+        if (vehicleId == 0) {
+            Toast.makeText(this, "Invalid Vehicle ID", Toast.LENGTH_SHORT).show()
+            return
+        }
 
         lifecycleScope.launch(Dispatchers.IO) {
-
-            val vehicle =
-                VehicleDatabase
-                    .getDatabase(applicationContext)
-                    .vehicleDao()
-                    .getVehicleById(vehicleId)
+            val vehicle = VehicleDatabase
+                .getDatabase(applicationContext)
+                .vehicleDao()
+                .getVehicleById(vehicleId)
 
             if (vehicle != null) {
-
                 VehicleDatabase
                     .getDatabase(applicationContext)
                     .vehicleDao()
                     .deleteVehicle(vehicle)
 
                 runOnUiThread {
-
                     Toast.makeText(
                         this@VehicleDetailsActivity,
                         "Vehicle Deleted Successfully.",
                         Toast.LENGTH_SHORT
                     ).show()
-
                     finish()
+                }
+            } else {
+                runOnUiThread {
+                    Toast.makeText(
+                        this@VehicleDetailsActivity,
+                        "Vehicle not found!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
