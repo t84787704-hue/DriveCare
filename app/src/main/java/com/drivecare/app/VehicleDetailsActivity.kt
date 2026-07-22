@@ -6,6 +6,9 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class VehicleDetailsActivity : AppCompatActivity() {
 
@@ -20,6 +23,8 @@ class VehicleDetailsActivity : AppCompatActivity() {
     private lateinit var btnFuelHistory: Button
     private lateinit var btnDocuments: Button
     private lateinit var btnInsurance: Button
+
+    private var vehicleId: Int = 0
 
     private var vehicleName: String = ""
     private var vehicleType: String = ""
@@ -45,8 +50,8 @@ class VehicleDetailsActivity : AppCompatActivity() {
         btnDocuments = findViewById(R.id.btnDocuments)
         btnInsurance = findViewById(R.id.btnInsurance)
 
-
-        // Receive Vehicle Data
+        vehicleId =
+            intent.getIntExtra("vehicleId", 0)
 
         vehicleName =
             intent.getStringExtra("vehicleName") ?: ""
@@ -60,16 +65,10 @@ class VehicleDetailsActivity : AppCompatActivity() {
         vehicleModel =
             intent.getStringExtra("vehicleModel") ?: ""
 
-
-        // Show Vehicle Data
-
         tvVehicleName.text = vehicleName
         tvVehicleType.text = "Type : $vehicleType"
         tvVehicleBrand.text = "Brand : $vehicleBrand"
         tvVehicleModel.text = "Model : $vehicleModel"
-
-
-        // Edit Vehicle
 
         btnEditVehicle.setOnClickListener {
 
@@ -81,21 +80,11 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
         }
 
-
-        // Delete Vehicle
-
         btnDeleteVehicle.setOnClickListener {
 
-            Toast.makeText(
-                this,
-                "Delete Vehicle Coming Soon.",
-                Toast.LENGTH_SHORT
-            ).show()
+            deleteVehicle()
 
         }
-
-
-        // Maintenance History
 
         btnServiceHistory.setOnClickListener {
 
@@ -108,9 +97,6 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
         }
 
-
-        // Fuel History
-
         btnFuelHistory.setOnClickListener {
 
             startActivity(
@@ -121,9 +107,6 @@ class VehicleDetailsActivity : AppCompatActivity() {
             )
 
         }
-
-
-        // Vehicle Documents
 
         btnDocuments.setOnClickListener {
 
@@ -136,9 +119,6 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
         }
 
-
-        // Insurance Details
-
         btnInsurance.setOnClickListener {
 
             Toast.makeText(
@@ -149,5 +129,36 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun deleteVehicle() {
+
+        lifecycleScope.launch(Dispatchers.IO) {
+
+            val vehicle =
+                VehicleDatabase
+                    .getDatabase(applicationContext)
+                    .vehicleDao()
+                    .getVehicleById(vehicleId)
+
+            if (vehicle != null) {
+
+                VehicleDatabase
+                    .getDatabase(applicationContext)
+                    .vehicleDao()
+                    .deleteVehicle(vehicle)
+
+                runOnUiThread {
+
+                    Toast.makeText(
+                        this@VehicleDetailsActivity,
+                        "Vehicle Deleted Successfully.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    finish()
+                }
+            }
+        }
     }
 }
