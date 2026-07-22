@@ -52,6 +52,11 @@ class VehicleDetailsActivity : AppCompatActivity() {
 
         vehicleId =
             intent.getIntExtra("vehicleId", 0)
+Toast.makeText(
+    this,
+    "ID = $vehicleId",
+    Toast.LENGTH_LONG
+).show()
 
         vehicleName =
             intent.getStringExtra("vehicleName") ?: ""
