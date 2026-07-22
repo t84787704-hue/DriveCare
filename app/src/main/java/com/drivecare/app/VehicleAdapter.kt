@@ -1,11 +1,13 @@
 package com.drivecare.app
 
+import android.widget.Button
+import android.widget.Toast
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import android.widget.TextView
 
 class VehicleAdapter(
     private val vehicleList: List<Vehicle>
@@ -28,6 +30,12 @@ class VehicleAdapter(
 
         val tvVehicleDetails: TextView =
             itemView.findViewById(R.id.tvVehicleDetails)
+
+        val btnEditVehicle: Button =
+            itemView.findViewById(R.id.btnEditVehicle)
+
+        val btnDeleteVehicle: Button =
+            itemView.findViewById(R.id.btnDeleteVehicle)
     }
 
     override fun onCreateViewHolder(
@@ -79,6 +87,7 @@ Insurance : ${vehicle.insuranceDetails}
 Notes : ${vehicle.notes}
             """.trimIndent()
 
+
         holder.itemView.setOnClickListener {
 
             val intent = Intent(
@@ -111,8 +120,27 @@ Notes : ${vehicle.notes}
                 vehicle.model
             )
 
-            holder.itemView.context
-                .startActivity(intent)
+            holder.itemView.context.startActivity(intent)
+        }
+
+
+        holder.btnEditVehicle.setOnClickListener {
+
+            Toast.makeText(
+                holder.itemView.context,
+                "Edit Feature Next Fix",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+
+        holder.btnDeleteVehicle.setOnClickListener {
+
+            Toast.makeText(
+                holder.itemView.context,
+                "Delete Button Working",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
