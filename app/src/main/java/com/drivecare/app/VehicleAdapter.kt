@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 class VehicleAdapter(
     private val vehicleList: List<Vehicle>
@@ -52,7 +54,7 @@ Insurance : ${vehicle.insuranceDetails}
 Notes : ${vehicle.notes}
         """.trimIndent()
 
-        // Item click → Details Screen
+        // Whole item click → Details Screen
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, VehicleDetailsActivity::class.java).apply {
                 putExtra("vehicleId", vehicle.id)
@@ -64,7 +66,7 @@ Notes : ${vehicle.notes}
             holder.itemView.context.startActivity(intent)
         }
 
-        // Edit Button (Direct Edit Screen)
+        // Edit Button
         holder.btnEditVehicle.setOnClickListener {
             val intent = Intent(holder.itemView.context, AddVehicleActivity::class.java).apply {
                 putExtra("vehicleId", vehicle.id)
@@ -75,27 +77,27 @@ Notes : ${vehicle.notes}
 
         // Delete Button
         holder.btnDeleteVehicle.setOnClickListener {
-            deleteVehicle(holder.itemView.context, vehicle)
+            deleteVehicle(holder.itemView.context, vehicle, position)
         }
     }
 
-    private fun deleteVehicle(context: android.content.Context, vehicle: Vehicle) {
-        android.widget.Toast.makeText(context, "Deleting...", android.widget.Toast.LENGTH_SHORT).show()
+    private fun deleteVehicle(context: android.content.Context, vehicle: Vehicle, position: Int) {
+        Toast.makeText(context, "Deleting...", Toast.LENGTH_SHORT).show()
 
-        kotlinx.coroutines.MainScope().launch {
+        MainScope().launch {
             try {
                 VehicleDatabase.getDatabase(context)
                     .vehicleDao()
                     .deleteVehicle(vehicle)
 
-                android.widget.Toast.makeText(context, "Vehicle Deleted Successfully!", android.widget.Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Vehicle Deleted Successfully!", Toast.LENGTH_SHORT).show()
 
-                // Refresh list
+                // Refresh list if possible
                 if (context is VehicleListActivity) {
                     context.loadVehicles()
                 }
             } catch (e: Exception) {
-                android.widget.Toast.makeText(context, "Error: ${e.message}", android.widget.Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Error deleting vehicle: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }
